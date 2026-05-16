@@ -808,6 +808,8 @@ pub struct Appearance {
     pub style: AppearanceStyle,
     #[serde(deserialize_with = "opacity_deserializer")]
     pub opacity: f32,
+    #[serde(deserialize_with = "opacity_deserializer")]
+    pub module_background_opacity: f32,
     pub menu: MenuAppearance,
     pub background_color: BackgroundAppearanceColor,
     pub primary_color: AppearanceColor,
@@ -872,6 +874,7 @@ impl Default for Appearance {
             scale_factor: 1.0,
             style: AppearanceStyle::default(),
             opacity: default_opacity(),
+            module_background_opacity: default_opacity(),
             menu: MenuAppearance::default(),
             background_color: BackgroundAppearanceColor::Complete {
                 base: HexColor::rgb(26, 27, 38),

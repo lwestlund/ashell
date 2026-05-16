@@ -1,0 +1,13 @@
+[Unit]
+Description=A ready to go Wayland status bar for Hyprland and Niri
+Documentation=https://malpenzibo.github.io/ashell/
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/ashell
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

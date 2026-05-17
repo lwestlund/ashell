@@ -131,8 +131,8 @@ impl Default for AshellTheme {
             opacity: appearance.opacity,
             module_background_opacity: appearance.module_background_opacity,
             menu: appearance.menu,
-            workspace_colors: appearance.workspace_colors.clone(),
-            special_workspace_colors: appearance.special_workspace_colors.clone(),
+            workspace_colors: appearance.workspace_colors,
+            special_workspace_colors: appearance.special_workspace_colors,
             scale_factor: appearance.scale_factor,
             animations_enabled: false,
             iced_theme: Theme::custom_with_fn(

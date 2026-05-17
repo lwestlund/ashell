@@ -33,6 +33,12 @@ pub struct UiWorkspace {
     pub windows: u16,
 }
 
+impl UiWorkspace {
+    fn is_special_workspace(&self) -> bool {
+        self.id < 0
+    }
+}
+
 #[derive(Debug, Clone)]
 struct VirtualDesktop {
     pub active: bool,
@@ -76,7 +82,7 @@ fn calculate_ui_workspaces(
         .collect_vec();
 
     let mut result: Vec<UiWorkspace> = Vec::with_capacity(workspaces.len());
-    let (special, normal): (Vec<_>, Vec<_>) = workspaces.into_iter().partition(|w| w.id < 0);
+    let (special, normal): (Vec<_>, Vec<_>) = workspaces.into_iter().partition(|w| w.is_special);
 
     // map special workspaces
     if !config.disable_special_workspaces {
@@ -446,7 +452,7 @@ impl Workspaces {
                                     (_, Displayed::Hidden) => Some(theme.space.md),
                                 };
                                 let name = w.name.clone();
-                                let padding = if w.id < 0 {
+                                let padding = if w.is_special_workspace() {
                                     match w.displayed {
                                         Displayed::Active => [0.0, theme.space.md],
                                         Displayed::Visible => [0.0, theme.space.sm],
